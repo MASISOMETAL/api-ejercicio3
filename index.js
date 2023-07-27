@@ -1,11 +1,9 @@
-const express = require("express");
+import express from "express"
+
 const path = require("path")
 const app = express();
 
 app.use(express.json());
-
-const port = process.env.port || 3300;
-app.listen(port, () => console.log(`Escuchando en el puerto ${port}...`)); 
 
 app.get("/", (req, res)=> {
     res.sendFile(path.join(__dirname + "/index.html"))
@@ -48,4 +46,7 @@ app.get("/api/getinfo", (req, res) => {
     }
 
 });
+
+const port = process.env.port || 3300;
+app.listen(port, () => console.log(`Escuchando en el puerto ${port}...`)); 
 
