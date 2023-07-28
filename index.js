@@ -2,12 +2,20 @@ import express from "express"
 import path from "path"
 import { fileURLToPath } from 'url'
 import axios from 'axios';
+import cors from "cors"
 
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 app.use(express.json());
+
+const corsOptions = {
+    origin: '*', // Sustituye con el dominio que deseas permitir
+    optionsSuccessStatus: 200 // Algunos navegadores requieren esto para aceptar la respuesta CORS
+  };
+
+app.use(cors(corsOptions))
 
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "index.html"))
